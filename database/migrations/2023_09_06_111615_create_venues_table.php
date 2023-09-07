@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('category', ['Private', 'Public']);
             $table->string('name');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->boolean('is_activated')->default(false);
             $table->text('description')->nullable();
             $table->string('phone_number')->nullable();

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class VenueController extends Controller
@@ -20,17 +21,23 @@ class VenueController extends Controller
         $userId = Auth::id();
         $term = $request->input('term');
 
-        $venues = Venue::query()
+        $venuesQuery = Venue::query()
             ->where('user_id', $userId)
-            ->when($term, function ($query, $term) {
-                $query->where('name', 'LIKE', '%' . $term . '%')
+            ->when($term, function ($query) use ($term) {
+                return $query->where('name', 'LIKE', '%' . $term . '%')
                     ->orWhere('email_address', 'LIKE', '%' . $term . '%');
             })
-            ->latest()
-            ->paginate(5);
+            ->latest();
+
+        // Paginate the query result
+        $venues = $venuesQuery->paginate(5);
+
+        // Cache the paginated result
+        Cache::put('venues_' . $userId, $venues, now()->addMinutes(60));
 
         return Inertia::render('Venues/Index', compact('venues'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -81,6 +88,7 @@ class VenueController extends Controller
     {
         $user = Auth::user();
         Venue::where('id', $id)->update($request->all());
+        Cache::forget('venues_' . $user->id);
         if ($user->role_id == 2) {
             return redirect('/venues')->with('success', 'Venue has been updated!');
         } else {
@@ -93,9 +101,10 @@ class VenueController extends Controller
      */
     public function destroy(string $id)
     {
+        $user = Auth::user();
         $venue = Venue::find($id);
         $venue->delete();
-
+        Cache::forget('venues_' . $user->id);
         return back()->with('delete', 'Venue has been deleted!');
     }
 
