@@ -18,10 +18,10 @@ The application is designed to provide a smooth and interactive user experience.
 To get started with the installation, follow these steps:
 
 1. Clone the repository
-``git clone https://github.com/perisicnikola37/laravel-inertia-vue-spa.git``
+``git clone https://github.com/hminvozone/venues-dashboard.git``
 
 2. Enter project directory
-``cd laravel-inertia-vue-project``
+``cd venues-dashboard``
 
 3. Install/update composer
 ``composer install | composer update``
@@ -29,45 +29,36 @@ To get started with the installation, follow these steps:
 4. Install npm
 ``npm install``
 
-3. Set up the environment variables
+5. Set up the environment variables
 ``cp .env.example .env``
 
-4. Generate an application key
+6. Set up the email configurations in .env
+
+7. Generate an application key
 ``php artisan key:generate``
 
-5. Configure the database
+8. Configure the database
 ``php artisan migrate``
 
-6. Start the development server
+9. Configure the database
+   ``php artisan db:seed``
+
+10. Start the development server
 ``npm run dev``
 
-7. Visit the application at [http://localhost:8000](http://localhost:8000)
+11. Start the development server
+   ``php artisan serve``
 
-## Features
+11. Setup the queues in .env
+    ``QUEUE_CONNECTION=database``
 
-This application includes the following features:
+12. Start the queue jobs
+   ``php artisan queue:work``
 
-- User authentication and authorization
-- CRUD operations for users and roles
-- Real-time updates using Inertia.js and Vue.js
-- Two factor authentication
-- Browser sessions
-- Full text searching
-- Pagination
-- Multi delete users
-- Inertia.ks progress indicator
-- Font Awesome icons
-- Application analytics
-- User default profile avatar
-## Contributing
+13. Visit the application at in the browser.
 
-If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository
-2. Create a new branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
+## Laravel Valet Instalattion
+To install Laravel Valet follow this link https://gist.github.com/bradtraversy/b58f74cd863a465068eaeaae1544d9be
 
 ## License
 

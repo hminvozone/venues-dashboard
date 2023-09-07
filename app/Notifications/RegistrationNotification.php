@@ -37,7 +37,7 @@ class RegistrationNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Welcome')
             ->line('Thank you for registering on our website.')
-            ->action('Visit Website', url('/'))
+            ->action('Visit Website', url('http://127.0.0.1:8000'))
             ->line('Feel free to explore our website and enjoy your stay!')
             ->line('If you have any questions, please reply to this email.');
     }

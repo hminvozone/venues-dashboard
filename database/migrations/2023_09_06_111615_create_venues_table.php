@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('full_address');
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
+            $table->boolean('description_cleaned')->default(false);
             $table->timestamp('activated_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

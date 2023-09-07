@@ -18,12 +18,6 @@ return new class extends Migration
             $table->string('name', 255);
             $table->timestamps();
         });
-
-        Role::insert([
-            ['name' => 'Administrator', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Venue Managers', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Venue Staff', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-        ]);
     }
 
     /**

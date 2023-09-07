@@ -14,7 +14,6 @@ class User extends Authenticatable
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use SoftDeletes;
 
     protected $guarded = [];
@@ -22,8 +21,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     protected $appends = [
@@ -44,5 +41,15 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->role->id == 1;
+    }
+
+    public function staff()
+    {
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
     }
 }
