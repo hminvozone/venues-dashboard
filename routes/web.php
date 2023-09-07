@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
+    return Inertia::render('Auth/Register', [
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
@@ -21,10 +20,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::resource('/venues', VenueController::class);
         Route::resource('/users', UserController::class);
         Route::resource('/roles', RoleController::class);
-        //Route::post('/users/delete', [UserController::class, 'deleteMultiple'])->name('users.delete');
-        //Route::post('/venues/delete', [VenueController::class, 'deleteMultiple'])->name('venues.delete');
         Route::get('/venues/assign/{id}', [VenueController::class, 'assign'])->name('venues.assign');
-        Route::post('/venues/assign', [VenueController::class, 'assignVenues'])->name('venues.assign'); // add put
+        Route::post('/venues/assign', [VenueController::class, 'assignVenues'])->name('venues.assign');
         Route::get('/staff/venue/list', [StaffController::class, 'list'])->name('staff.venues.list');
         Route::get('/staff/venue/view', [StaffController::class, 'view'])->name('staff.venues.view');
 

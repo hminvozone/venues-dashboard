@@ -179,7 +179,7 @@ export default {
 				this.selectedVenues = [];
 			} catch (error) {
 				console.error(error);
-				alert('An error occurred while deleting the selected users.');
+				alert('An error occurred while deleting the selected venues.');
 			}
 		},
 	}

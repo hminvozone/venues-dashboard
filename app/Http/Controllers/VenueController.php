@@ -86,9 +86,13 @@ class VenueController extends Controller
      */
     public function update(VenueStoreRequest $request, string $id)
     {
+        $venue = Venue::find($id);
+
+        if ($venue) {
+            $venue->update($request->all());
+        }
+
         $user = Auth::user();
-        Venue::where('id', $id)->update($request->all());
-        Cache::forget('venues_' . $user->id);
         if ($user->role_id == 2) {
             return redirect('/venues')->with('success', 'Venue has been updated!');
         } else {
@@ -106,14 +110,6 @@ class VenueController extends Controller
         $venue->delete();
         Cache::forget('venues_' . $user->id);
         return back()->with('delete', 'Venue has been deleted!');
-    }
-
-    public function deleteMultiple(Request $request)
-    {
-        $venueIds = $request->input('ids');
-        Venue::whereIn('id', $venueIds)->delete();
-
-        return redirect()->route('venues.index')->with('success', 'Operation successfully!');
     }
 
     public function assign(string $id)

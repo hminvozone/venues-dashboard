@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable()->after('id');
+        Schema::create('event_logs', function (Blueprint $table) {
+            $table->id();
+            $table->string('event_type')->nullable();
+            $table->unsignedBigInteger('model_id')->nullable();
+            $table->string('model')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('event_logs');
     }
 };

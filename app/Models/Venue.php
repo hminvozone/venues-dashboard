@@ -25,12 +25,19 @@ class Venue extends Model
         'longitude',
         'activated_at',
         'user_id',
+        'description_cleaned',
     ];
 
     protected $dates = ['deleted_at'];
 
     protected $appends = [
         'formatted_created_at'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => \App\Events\VenueCreated::class,
+        'updated' => \App\Events\VenueUpdated::class,
+        'deleted' => \App\Events\VenueDeleted::class,
     ];
 
     public function getFormattedCreatedAtAttribute(): string

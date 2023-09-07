@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Role;
+use App\Models\Venue;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +50,10 @@ class HandleInertiaRequests extends Middleware
                 'delete' => session('delete') ?? null,
             ],
             'counts' => [
-                'userCount' => User::count(),
-                'roleCount' => Role::count(),
+                'staffCount' => User::whereHas('role', function ($query) {
+                    $query->where('name', 'Venue Staff');
+                })->count(),
+                'venueCount' => Venue::count(),
             ],
             'auth' => [
                 'user' => Auth::user()
