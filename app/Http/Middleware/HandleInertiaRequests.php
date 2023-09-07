@@ -51,9 +51,9 @@ class HandleInertiaRequests extends Middleware
             ],
             'counts' => [
                 'staffCount' => User::whereHas('role', function ($query) {
-                    $query->where('name', 'Venue Staff');
+                    $query->where('name', 'Venue Staff')->where('parent_id', Auth::id());
                 })->count(),
-                'venueCount' => Venue::count(),
+                'venueCount' => Venue::where('user_id', Auth::id())->count(),
             ],
             'auth' => [
                 'user' => Auth::user()
