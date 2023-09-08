@@ -30,6 +30,7 @@ class VenueControllerTest extends TestCase
 
         // This test intertia component and validate if it has venue data
         $response->assertInertia(fn (Assert $page) => $page
+            ->component('Venues/Index')
             ->has('venues')
             ->has('venues.data')
         );

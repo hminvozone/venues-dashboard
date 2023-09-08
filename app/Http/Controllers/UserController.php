@@ -61,16 +61,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $getUser = User::findOrFail($id);
-
-        return Inertia::render('Users/Show', compact('getUser'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)

@@ -22,16 +22,6 @@
 
 			<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 				<div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-
-					<a href="#" @click="deleteSelectedUsers"
-						class="float-left px-4 py-2 mt-3 text-red-400 duration-100 rounded hover:text-red-600">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
-								fill="none"
-								d="M3 6h18M6 6l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 4v-1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
-						</svg>
-					</a>
-
 					<div class="flex justify-end mt-3">
 						<div class="mb-3 xl:w-96">
 							<div class="relative flex items-stretch w-4/5 mb-3 input-group">
@@ -57,7 +47,6 @@
 					<table class="min-w-full divide-y divide-gray-200">
 						<thead class="bg-gray-50">
 							<tr>
-								<th scope="col"></th>
 								<th scope="col"
 									class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
 									ID
@@ -89,10 +78,6 @@
 						</thead>
 						<tbody class="bg-white divide-y divide-gray-200">
 							<tr v-for="user in users.data" :key="user.id">
-								<td>
-									<input type="checkbox" v-model="selectedUsers" :value="user.id"
-										class="ml-5 outline-none" />
-								</td>
 								<td class="px-6 py-4 whitespace-nowrap">
 									<div class="text-sm text-center text-gray-900">
 										{{ user.id }}
@@ -108,8 +93,7 @@
 
 										<div class="ml-4">
 											<div class="text-sm font-medium text-gray-900">
-												<inertia-link class="transition hover:text-blue-500"
-													:href="`users/${user.id}`">{{ user.name }}</inertia-link>
+												{{ user.name }}
 											</div>
 										</div>
 									</div>
