@@ -44,6 +44,21 @@ To get started with the installation, follow these steps:
 
 13. Visit the application at in the browser.
 
+## Test Cases
+
+To get started with the test cases, follow these steps:
+
+1. Set up the environment variables
+``cp .env.example .env.testing``
+
+2. Create new database for testing and mention in .env.testing
+
+3. Configure the database
+``php artisan migrate --env=testing``
+
+4. Start the tests
+   ``php artisan test``
+
 ## Laravel Valet Instalattion
 To install Laravel Valet follow this link https://gist.github.com/bradtraversy/b58f74cd863a465068eaeaae1544d9be
 

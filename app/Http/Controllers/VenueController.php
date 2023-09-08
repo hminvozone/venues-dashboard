@@ -62,16 +62,6 @@ class VenueController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $venue = Venue::findOrFail($id);
-
-        return Inertia::render('Venues/Show', compact('venue'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
